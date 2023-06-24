@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+}
+
+svg {
+  @apply inline mx-1;
+}

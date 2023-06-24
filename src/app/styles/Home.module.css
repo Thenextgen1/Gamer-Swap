@@ -1,0 +1,67 @@
+.hero h2 {
+    line-height: 1.15;
+}
+
+.hero_continue::before,
+.hero_continue::after {
+    content: '';
+    display: inline-block;
+    width: 3em;
+    height: 2px;
+    background-color: #EAECEF;
+    vertical-align: middle;
+    @apply mr-1;
+}
+
+.works {
+    @apply py-14;
+}
+
+.works>div div p {
+    @apply text-black text-center;
+}
+
+.works>div div {
+    @apply flex justify-center items-center rounded-[8px] bg-secondaryColor pt-6 pb-16 px-8 flex-col mx-6;
+
+}
+
+.works h4 {
+    @apply text-primaryColor font-bold my-3;
+}
+
+.hero_signup {
+    @apply bg-[#2c6e49] rounded-md p-2 px-4 text-white font-medium;
+}
+
+@media(min-width: 375px) {
+
+    .hero_continue::after,
+    .hero_continue::before {
+        width: 5em;
+    }
+}
+
+@media(min-width: 640px) {
+
+    .hero_continue::after,
+    .hero_continue::before {
+        width: 8em;
+    }
+}
+
+@media(min-width: 768px) {
+
+
+    .works>div div {
+        @apply mx-4;
+    }
+}
+
+
+@media(min-width: 1024px) {
+
+    .works>div div {
+        @apply mx-0;
+    }
+}

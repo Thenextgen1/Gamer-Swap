@@ -1,0 +1,3 @@
+.desktop_container ul li {
+    @apply inline-block mx-4;
+}
