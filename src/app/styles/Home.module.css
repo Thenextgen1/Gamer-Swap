@@ -6,7 +6,7 @@
 .hero_continue::after {
     content: '';
     display: inline-block;
-    width: 3em;
+    width: calc(45% - 4em);
     height: 2px;
     background-color: #EAECEF;
     vertical-align: middle;
@@ -34,21 +34,7 @@
     @apply bg-[#2c6e49] rounded-md p-2 px-4 text-white font-medium;
 }
 
-@media(min-width: 375px) {
 
-    .hero_continue::after,
-    .hero_continue::before {
-        width: 5em;
-    }
-}
-
-@media(min-width: 640px) {
-
-    .hero_continue::after,
-    .hero_continue::before {
-        width: 8em;
-    }
-}
 
 @media(min-width: 768px) {
 
