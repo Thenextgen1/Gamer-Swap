@@ -20,11 +20,14 @@ const Hero = () => {
           <p className="lg:text-xl text-sm mt-12 mb-8">
             Exchange Gaming Items for free <BsArrowRightCircleFill />{" "}
           </p>
-          <p className={styles.hero_signup}>
-            <span className="text-center block lg:px-12  py-2 tracking-wider lg:text-lg">
+          <p
+            className={`${styles.hero_signup} cursor-pointer hover:bg-lightColor hover:font-semibold`}
+            onClick={() => signIn()}
+          >
+            <span className="text-center block  lg:px-12  py-2 tracking-wider lg:text-lg">
               {" "}
               <BsPersonFill size={22} />
-              Sign up with Email or Phone
+              Sign up with Email
             </span>
           </p>
           <p
@@ -35,7 +38,7 @@ const Hero = () => {
           <div className="flex  text-lg items-center">
             <p
               onClick={() => signIn()}
-              className=" flex-1 mr-2 cursor-pointer  w-full bg-[#EAECEF] py-2 sm:py-4 my-4 rounded-lg text-center"
+              className=" flex-1 mr-2 cursor-pointer hover:bg-[#F5F5F5] hover:font-medium w-full bg-[#EAECEF] py-2 sm:py-4 my-4 rounded-lg text-center"
             >
               <FcGoogle
                 size={20}
@@ -45,7 +48,7 @@ const Hero = () => {
             </p>
             <p
               onClick={() => signIn()}
-              className=" cursor-pointer py-2 sm:py-4  ml-2 w-full flex-1 bg-[#EAECEF] my-4 text-center sm:ml-6 rounded-lg"
+              className="  hover:bg-[#F5F5F5] hover:font-medium cursor-pointer py-2 sm:py-4  ml-2 w-full flex-1 bg-[#EAECEF] my-4 text-center sm:ml-6 rounded-lg"
             >
               <FaFacebookSquare
                 size={20}

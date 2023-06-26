@@ -29,7 +29,7 @@ const DesktopNav = () => {
       <div>
         <ul className="cursor-pointer">
           <li>
-            <FaSearch />
+            <FaSearch className="hover:text-lightColor" />
           </li>
           {session ? (
             <>
@@ -43,8 +43,13 @@ const DesktopNav = () => {
             </>
           ) : (
             <>
-              <li onClick={() => signIn()}>Log In</li>
-              <li className="bg-[#2c6e49] rounded-md p-2 px-4 mx-2  text-white">
+              <li
+                onClick={() => signIn()}
+                className="hover:text-lightColor hover:font-semibold"
+              >
+                Log In
+              </li>
+              <li className="bg-[#2c6e49]  hover:bg-lightColor hover:font-semibold rounded-md p-2 px-4 mx-2  text-white">
                 <BsPersonFill /> Register
               </li>
             </>
