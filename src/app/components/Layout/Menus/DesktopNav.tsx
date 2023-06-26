@@ -1,3 +1,6 @@
+"use client";
+
+import { useSession, signIn, signOut } from "next-auth/react";
 import { BiSolidMoon } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
@@ -5,6 +8,8 @@ import { FaSearch } from "react-icons/fa";
 import styles from "@/app/styles/DesktopNav.module.css";
 
 const DesktopNav = () => {
+  const { data: session } = useSession();
+
   return (
     <nav
       className={`hidden xl:flex xl:justify-between xl:items-center px-8 py-4 ${styles.desktop_container}`}
@@ -22,14 +27,29 @@ const DesktopNav = () => {
         </ul>
       </div>
       <div>
-        <ul>
+        <ul className="cursor-pointer">
           <li>
             <FaSearch />
           </li>
-          <li>Log In</li>
-          <li className="bg-[#2c6e49] rounded-md p-2 px-4 mx-2 text-white">
-            <BsPersonFill /> Register
-          </li>
+          {session ? (
+            <>
+              <li>Signed in as {session.user?.email}</li>
+              <li
+                onClick={() => signOut()}
+                className="bg-[#2c6e49] rounded-md p-2 px-4 mx-2 text-white"
+              >
+                <BsPersonFill /> Sign Out
+              </li>
+            </>
+          ) : (
+            <>
+              <li onClick={() => signIn()}>Log In</li>
+              <li className="bg-[#2c6e49] rounded-md p-2 px-4 mx-2  text-white">
+                <BsPersonFill /> Register
+              </li>
+            </>
+          )}
+
           <li>
             <BiSolidMoon />
           </li>

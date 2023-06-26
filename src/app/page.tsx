@@ -4,6 +4,8 @@ import trade from "@/app/data/home/trade.json";
 import Hero from "./common/Hero";
 import Works from "./common/Works";
 import styles from "@/app/styles/Home.module.css";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 import { Metadata } from "next";
 
@@ -18,7 +20,10 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
+
   return (
     <main className="">
       <section>

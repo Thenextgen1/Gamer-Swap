@@ -1,8 +1,11 @@
-import { BsApple, BsArrowRightCircleFill, BsPersonFill } from "react-icons/bs";
+"use client";
+
+import { BsArrowRightCircleFill, BsPersonFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { FaFacebookSquare } from "react-icons/fa";
 import Image from "next/image";
 import styles from "@/app/styles/Home.module.css";
-import { Button } from "../utils/Button";
+import { signIn } from "next-auth/react";
 
 const Hero = () => {
   return (
@@ -25,24 +28,30 @@ const Hero = () => {
             </span>
           </p>
           <p
-            className={`py-6 mt-6 text-[#707a8a] sm:text-center lg:text-left ${styles.hero_continue}`}
+            className={`py-6 mt-6 text-[#707a8a] text-center ${styles.hero_continue}`}
           >
-            <span className="mr-1"> Or continue with</span>
+            <span className="mr-1 "> Or continue with</span>
           </p>
           <div className="flex  text-lg items-center">
-            <p className=" flex-1 mr-2  w-full bg-[#EAECEF] py-2 sm:py-4 my-4 rounded-lg text-center">
+            <p
+              onClick={() => signIn()}
+              className=" flex-1 mr-2 cursor-pointer  w-full bg-[#EAECEF] py-2 sm:py-4 my-4 rounded-lg text-center"
+            >
               <FcGoogle
                 size={20}
                 className="align-text-top mr-2"
               />
               <span>Google</span>
             </p>
-            <p className=" py-2 sm:py-4  ml-2 w-full flex-1 bg-[#EAECEF] my-4 text-center sm:ml-6 rounded-lg">
-              <BsApple
+            <p
+              onClick={() => signIn()}
+              className=" cursor-pointer py-2 sm:py-4  ml-2 w-full flex-1 bg-[#EAECEF] my-4 text-center sm:ml-6 rounded-lg"
+            >
+              <FaFacebookSquare
                 size={20}
-                className="align-baseline mr-2"
+                className="align-middle mr-2 text-blue-700"
               />
-              <span className="">Apple</span>
+              <span>Facebook</span>
             </p>
           </div>
         </div>
