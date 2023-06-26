@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         primaryColor: "#2c6e49",
         secondaryColor: "#FAFAFA",
+        lightColor: "#81c29e"
       },
       fontFamily: {
         sans: ['var(--font-poppins)'],
