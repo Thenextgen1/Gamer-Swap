@@ -1,7 +1,7 @@
-import { Footer, Header } from "./components";
 import { NextAuthProvider } from "./providers";
 import "./globals.css";
 import { Outfit } from "next/font/google";
+import { Footer, Header } from "./lib/components";
 
 const outfit = Outfit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],

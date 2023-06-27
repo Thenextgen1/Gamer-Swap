@@ -1,17 +1,18 @@
 import { Poppins } from "next/font/google";
-import { Button } from "./utils/Button";
-import trade from "@/app/data/home/trade.json";
-import Hero from "./common/Hero";
-import Works from "./common/Works";
+import { Button } from "./lib/utils/Button";
+import trade from "@/app/lib/data/home/trade.json";
+
 import styles from "@/app/styles/Home.module.css";
 
 import { Metadata } from "next";
+import Works from "./lib/components/Home/Works";
+import Hero from "./lib/components/Home/Hero";
 
 export const metadata: Metadata = {
   title: "Gamer Swap",
 };
 
-const poppins = Poppins({
+export const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
