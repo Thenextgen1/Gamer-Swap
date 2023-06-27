@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Form from "../lib/components/login/Form";
+import Form from "../lib/components/Register/Form";
 
 export const metadata: Metadata = {
   title: "Gamer Swap",
