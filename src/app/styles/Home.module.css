@@ -14,7 +14,7 @@
 }
 
 .works {
-    @apply py-14;
+    @apply py-14 max-w-7xl mx-auto;
 }
 
 .works>div div p {
