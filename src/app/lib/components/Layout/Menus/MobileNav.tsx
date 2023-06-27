@@ -52,11 +52,8 @@ const MobileNav = () => {
               </>
             ) : (
               <>
-                <p
-                  onClick={() => signIn()}
-                  className="hover:text-lightColor my-4 hover:font-semibold text-center"
-                >
-                  Log In
+                <p className="hover:text-lightColor my-4 hover:font-semibold text-center">
+                  <Link href="/login">Log In</Link>
                 </p>
                 <p className="bg-[#2c6e49] text-center  hover:bg-lightColor hover:font-semibold rounded-md p-2 px-4  text-white">
                   <BsPersonFill /> <Link href="/register">Register</Link>
