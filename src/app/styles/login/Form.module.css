@@ -3,26 +3,28 @@
     @apply block my-1;
 }
 
-
-
-.form_container div {
-    @apply mt-12;
-}
-
 .login_continue::before,
 .login_continue::after {
     content: '';
     display: inline-block;
-    width: calc(45% - 4em);
+    max-width: 170px;
+    width: calc(60% - 4em);
     height: 2px;
     background-color: #EAECEF;
     vertical-align: middle;
     @apply mr-1;
 }
 
+.form_container input[type="email"] {
+    padding: 1em
+}
 
-@media(min-width: 640px) {
-    .form_container input {
-        min-width: 380px;
-    }
+
+
+.form_container>div {
+    @apply w-full;
+}
+
+.login_continue {
+    @apply w-full;
 }
