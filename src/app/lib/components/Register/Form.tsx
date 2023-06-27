@@ -1,15 +1,14 @@
 import { Button } from "@/app/lib/utils/Button";
 import { poppins } from "@/app/page";
-import styles from "@/app/styles/Form.module.css";
+import styles from "@/app/styles/register/Form.module.css";
 
 const Form = () => {
   return (
     <form
       className={`${styles.form_container} mt-10 flex justify-center items-center flex-col`}
     >
-      <div className="flex flex-col justify-center items-center mx-4"></div>
       <h2
-        className={`leading-[1.15] text-xl sm:text-2xl font-semibold font-sans mx-4 ${poppins.variable}`}
+        className={`leading-[1.15] text-xl sm:text-2xl font-semibold font-sans -ml-16 ${poppins.variable}`}
       >
         Create Personal Account
       </h2>
