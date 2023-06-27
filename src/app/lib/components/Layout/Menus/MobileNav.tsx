@@ -17,7 +17,7 @@ const MobileNav = () => {
     <nav>
       <div className="xl:hidden relative flex px-1 justify-between items-center pl-2 sm:px-16 pt-4 pb-2">
         <h1 className="uppercase text-xl font-bold tracking-wider text-[#2c6e49]">
-          Gamer Swap
+          <Link href="/">GAMER SWAP</Link>
         </h1>
         <div className="flex items-center z-[100]">
           <Hamburger
@@ -35,6 +35,9 @@ const MobileNav = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             exit={{ opacity: 0, x: 300 }}
+            onClick={() => {
+              setOpen(false);
+            }}
             className={`px-4 bottom-0 top-0 right-0 w-[98%] z-[90] pt-24 fixed h-screen  bg-white ${styles.nav_container}`}
           >
             {session ? (
