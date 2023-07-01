@@ -7,17 +7,11 @@ import styles from "@/app/styles/Home.module.css";
 import { Metadata } from "next";
 import Works from "./lib/components/Home/Works";
 import Hero from "./lib/components/Home/Hero";
+import { poppins } from "./lib/utils/font";
 
 export const metadata: Metadata = {
   title: "Gamer Swap",
 };
-
-export const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-poppins",
-});
 
 export default function Home() {
   return (
