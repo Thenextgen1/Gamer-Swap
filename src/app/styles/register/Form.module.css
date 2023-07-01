@@ -6,7 +6,7 @@
 
 
 .form_container div {
-    @apply mt-12;
+    @apply mt-8;
 }
 
 @media(min-width: 640px) {

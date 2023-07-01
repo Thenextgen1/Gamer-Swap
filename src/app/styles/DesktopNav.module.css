@@ -1,3 +1,12 @@
 .desktop_container ul li {
-    @apply inline-block mx-4;
+    @apply inline-block mx-4 cursor-pointer;
+}
+
+.desktop_container ul li a:hover {
+    @apply text-lightColor font-semibold;
+
+}
+
+.register:hover {
+    color: #fff !important;
 }
