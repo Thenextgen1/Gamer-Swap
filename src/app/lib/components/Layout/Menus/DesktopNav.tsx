@@ -20,11 +20,18 @@ const DesktopNav = () => {
           <Link href="/">GAMER SWAP</Link>
         </h1>
         <ul>
-          <li>Buy Games</li>
-          <li>Trade Items</li>
-          <li>Earn</li>
-          <li>Feed</li>
-          <li>AR/VR Zone</li>
+          <li>
+            <Link href="/buy-games"> Buy Games</Link>
+          </li>
+          <li>
+            <Link href="/trade-items"> Trade Items</Link>
+          </li>
+          <li>
+            <Link href="/marketplace">Marketplace</Link>
+          </li>
+          <li>
+            <Link href="/exchange-zone">Exchange Zone</Link>
+          </li>
         </ul>
       </div>
       <div>
@@ -39,17 +46,24 @@ const DesktopNav = () => {
                 onClick={() => signOut()}
                 className="bg-[#2c6e49] rounded-md p-2 px-4 mx-2 text-white"
               >
-                <BsPersonFill /> Sign Out
+                <BsPersonFill /> Logout
               </li>
             </>
           ) : (
             <>
-              <li className="hover:text-lightColor hover:font-semibold">
-                <Link href="/login">Log In</Link>
-              </li>
-              <li className="bg-[#2c6e49]  hover:bg-lightColor hover:font-semibold rounded-md p-2 px-4 mx-2  text-white">
-                <BsPersonFill /> <Link href="/register">Register</Link>
-              </li>
+              <Link href="/login">
+                <li className="hover:text-lightColor hover:font-semibold">
+                  Log In
+                </li>
+              </Link>
+              <Link
+                href="/register"
+                className={styles.register}
+              >
+                <li className="bg-[#2c6e49]  hover:bg-lightColor hover:font-semibold rounded-md p-2 px-4 mx-2  text-white">
+                  <BsPersonFill /> Register
+                </li>
+              </Link>
             </>
           )}
 

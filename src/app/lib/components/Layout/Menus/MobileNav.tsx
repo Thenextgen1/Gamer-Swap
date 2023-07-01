@@ -47,25 +47,36 @@ const MobileNav = () => {
                   onClick={() => signOut()}
                   className="bg-[#2c6e49] rounded-md p-2 px-4 mx-2 text-white"
                 >
-                  <BsPersonFill /> Sign Out
+                  <BsPersonFill /> Logout
                 </p>
               </>
             ) : (
               <>
-                <p className="hover:text-lightColor my-4 hover:font-semibold text-center">
-                  <Link href="/login">Log In</Link>
-                </p>
-                <p className="bg-[#2c6e49] text-center  hover:bg-lightColor hover:font-semibold rounded-md p-2 px-4  text-white">
-                  <BsPersonFill /> <Link href="/register">Register</Link>
-                </p>
+                <Link href="/login">
+                  <p className="hover:text-lightColor my-4 hover:font-semibold text-center">
+                    Log In
+                  </p>
+                </Link>
+                <Link href="/register">
+                  <p className="bg-[#2c6e49] text-center  hover:bg-lightColor hover:font-semibold rounded-md p-2 px-4  text-white">
+                    <BsPersonFill /> Register
+                  </p>
+                </Link>
               </>
             )}
             <ul className={`${styles.navlink_container}`}>
-              <li>Buy Games</li>
-              <li>Trade Items</li>
-              <li>Earn</li>
-              <li>Feed</li>
-              <li>AR/VR Zone</li>
+              <li>
+                <Link href="/buy-games"> Buy Games</Link>
+              </li>
+              <li>
+                <Link href="/trade-items"> Trade Items</Link>
+              </li>
+              <li>
+                <Link href="/marketplace">Marketplace</Link>
+              </li>
+              <li>
+                <Link href="/exchange-zone">Exchange Zone</Link>
+              </li>
             </ul>
           </motion.div>
         )}
