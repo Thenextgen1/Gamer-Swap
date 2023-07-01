@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { RiTimerFlashLine } from "react-icons/ri";
 import works from "@/app/lib/data/home/works.json";
-
-import { container, item } from "@/app/lib/utils/animation";
+import { container, item } from "../../utils/animation";
 
 const Works = () => {
   return (
