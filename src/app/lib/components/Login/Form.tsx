@@ -1,15 +1,65 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import styles from "@/app/styles/login/Form.module.css";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import GoogleButton from "../Buttons/GoogleButton";
+import FacebookButton from "../Buttons/FacebookButton";
+import { signIn } from "next-auth/react";
+import { BsArrowRightCircleFill } from "react-icons/bs";
+import { poppins } from "../../utils/font";
 
 const Form = () => {
+  const params = useSearchParams();
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    name: "",
+  });
+
+  const [error, setError] = useState<string | null>("");
+  const [success, setSuccess] = useState<string | null>("");
+
+  useEffect(() => {
+    setError(params.get("error"));
+    setSuccess(params.get("success"));
+  }, [params]);
+
+  const handleChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = event.target;
+    setForm((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { email, password } = form;
+    signIn("credentials", {
+      email,
+      password,
+    });
+  };
+
   return (
     <form
+      onSubmit={handleSubmit}
       className={`${styles.form_container} flex justify-center items-center flex-col`}
     >
+      <h2
+        className={`leading-[1.15] mt-12 mx-auto w-full  pl-2 sm:pl-0 text-xl my-6 sm:text-2xl font-semibold font-sans ${poppins.variable}`}
+      >
+        Log In
+      </h2>
+
       <fieldset className="w-full mx-4 flex justify-center items-center flex-col">
         <label
           className="w-full pl-2 sm:pl-0 "
@@ -22,18 +72,37 @@ const Form = () => {
           id="email"
           type="email"
           required
+          onChange={handleChange}
+          value={form.email}
+          className=" w-[95%]  sm:pl-0 mx-4 sm:mx-0 border-solid border-[1px] border-[#EAECEF]"
+        />
+      </fieldset>
+      <fieldset className="w-full mx-4 mt-12 flex justify-center items-center flex-col">
+        <label
+          className="w-full pl-2 sm:pl-0 "
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          name="password"
+          id="password"
+          type="password"
+          onChange={handleChange}
+          value={form.password}
+          required
           className=" w-[95%]  sm:pl-0 mx-4 sm:mx-0 border-solid border-[1px] border-[#EAECEF]"
         />
       </fieldset>
       <div className={`flex flex-col justify-center w-full items-center mx-4`}>
-        <p className="w-full flex justify-center items-center">
-          <button
-            type="submit"
-            className="text-center flex-1   mt-6 bg-[#2c6e49] hover:bg-lightColor hover:font-semibold rounded-md p-[1rem] px-4 mx-2  text-white cursor-pointer"
-          >
-            Next
-          </button>
-        </p>
+        <button
+          type="submit"
+          className="w-full flex justify-center items-center"
+        >
+          <span className="text-center flex-1   mt-6 bg-[#2c6e49] hover:bg-lightColor hover:font-semibold rounded-md p-[1rem] px-4 mx-2  text-white cursor-pointer">
+            Log in
+          </span>
+        </button>
         <p
           className={`py-6  text-[#707a8a] text-center ${styles.login_continue}`}
         >
@@ -41,31 +110,17 @@ const Form = () => {
         </p>
       </div>
       <div className="flex w-full justify-center px-2 text-lg items-center">
-        <p
-          onClick={() => signIn("google")}
-          className=" flex items-center justify-between pl-4 flex-1   cursor-pointer hover:bg-[#F5F5F5] hover:font-medium  bg-[#EAECEF] py-2 sm:py-4 my-4 rounded-lg text-center"
-        >
-          <FcGoogle
-            size={20}
-            className="align-text-top"
-          />
-          <span> Continue with Google</span>
-          <span></span>
-        </p>
+        <GoogleButton />
       </div>
       <div className="flex w-full justify-center px-2 text-lg items-center">
-        <p
-          onClick={() => signIn("facebook")}
-          className=" flex items-center justify-between pl-4 flex-1   cursor-pointer hover:bg-[#F5F5F5] hover:font-medium  bg-[#EAECEF] py-2 sm:py-4 my-4 rounded-lg text-center"
-        >
-          <FaFacebookSquare
-            size={20}
-            className="align-middle text-blue-700"
-          />
-          <span> Continue with Facebook</span>
-          <span></span>
-        </p>
+        <FacebookButton />
       </div>
+
+      {error && (
+        <p className="text-red-700 w-full text-left uppercase tracking-wider text-sm font-semibold my-2 ">
+          {error}
+        </p>
+      )}
 
       <div className="py-4 px-2 w-full">
         <p>
@@ -75,6 +130,7 @@ const Form = () => {
           >
             {" "}
             Create a GamerSwap Account
+            <BsArrowRightCircleFill />
           </Link>
         </p>
       </div>
