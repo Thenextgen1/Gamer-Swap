@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 
 const GoogleButton = () => {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
   let callbackUrl = searchParams.get("callbackUrl")!;
 
   if (callbackUrl === null) {
