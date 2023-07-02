@@ -2,12 +2,9 @@ import bcrypt from "bcryptjs";
 import User from "@/app/lib/models/User";
 import { NextResponse } from "next/server";
 import dbConnect from "@/app/lib/utils/dbConnect";
+import { NextRequest } from "next/server";
 
-export const POST = async (request: {
-  json: () =>
-    | PromiseLike<{ name: any; email: any; password: any }>
-    | { name: any; email: any; password: any };
-}) => {
+export const POST = async (request: NextRequest) => {
   const { name, email, password } = await request.json();
 
   await dbConnect();
