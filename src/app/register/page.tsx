@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import Form from "../lib/components/Register/Form";
+import Form from "./Form";
 import { poppins } from "../lib/utils/font";
 
 export const metadata: Metadata = {
