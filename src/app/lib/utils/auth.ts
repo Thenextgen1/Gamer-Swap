@@ -5,8 +5,11 @@ import FacebookProvider from "next-auth/providers/facebook";
 import User from "../models/User";
 import dbConnect from "./dbConnect";
 import bcrypt from "bcryptjs";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import clientPromise from "./clientpromise";
 
-export const authOptions: NextAuthOptions = {
+export const authOptions = {
+  adapter: MongoDBAdapter(clientPromise),
   session: {
     strategy: "jwt",
   },
@@ -39,7 +42,7 @@ export const authOptions: NextAuthOptions = {
             if (isMatch) {
               return user;
             } else {
-              throw new Error("Invalid credentials");
+              throw new Error("Email or password is incorrect");
             }
           } else {
             throw new Error("User not found");
@@ -61,9 +64,10 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET!,
   pages: {
     signIn: "/login",
-    newUser: "/register",
+    newUser: "/my/dashboard",
     error: "/login",
   },
+  debug: process.env.NODE_ENV === "development",
   callbacks: {
     // We can pass in additional information from the user document MongoDB returns
     async jwt({ token, user }: any) {
