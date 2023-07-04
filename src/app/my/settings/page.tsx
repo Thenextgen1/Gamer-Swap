@@ -1,15 +1,20 @@
 "use client";
 
+import Loader from "@/app/lib/components/Loader";
 import { useSession, getSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 export default function Page() {
-  const { data: session } = useSession({
+  const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
       redirect("/login?callbackUrl=/my/settings");
     },
   });
+
+  if (status === "loading") {
+    return <Loader />;
+  }
 
   return (
     <main>
