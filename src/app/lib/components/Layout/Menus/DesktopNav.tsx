@@ -11,6 +11,29 @@ import Link from "next/link";
 const DesktopNav = () => {
   const { data: session } = useSession();
 
+  const navLink = [
+    {
+      id: "1",
+      base: "/buy-games",
+      name: "Buy Games",
+    },
+    {
+      id: "2",
+      base: "/trade-items",
+      name: "Trade Items",
+    },
+    {
+      id: "3",
+      base: "/marketplace",
+      name: "Marketplace",
+    },
+    {
+      id: "4",
+      base: "/exchange-zone",
+      name: "Exchange Zone",
+    },
+  ];
+
   return (
     <nav
       className={`hidden xl:flex xl:justify-between xl:items-center px-8 py-4 ${styles.desktop_container}`}
@@ -20,18 +43,11 @@ const DesktopNav = () => {
           <Link href="/">GAMER SWAP</Link>
         </h1>
         <ul>
-          <li>
-            <Link href="/buy-games"> Buy Games</Link>
-          </li>
-          <li>
-            <Link href="/trade-items"> Trade Items</Link>
-          </li>
-          <li>
-            <Link href="/marketplace">Marketplace</Link>
-          </li>
-          <li>
-            <Link href="/exchange-zone">Exchange Zone</Link>
-          </li>
+          {navLink.map((details) => (
+            <li key={details.id}>
+              <Link href={details.base}>{details.name}</Link>
+            </li>
+          ))}
         </ul>
       </div>
       <div>

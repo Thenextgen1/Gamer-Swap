@@ -42,10 +42,10 @@ const MobileNav = () => {
           >
             {session ? (
               <>
-                <p>Signed in as {session.user?.email}</p>
+                <p className=" mb-4">Signed in as {session.user?.email}</p>
                 <p
                   onClick={() => signOut()}
-                  className="bg-[#2c6e49] rounded-md p-2 px-4 mx-2 text-white"
+                  className="bg-[#2c6e49] text-center rounded-md p-2 px-4  text-white"
                 >
                   <BsPersonFill /> Logout
                 </p>
