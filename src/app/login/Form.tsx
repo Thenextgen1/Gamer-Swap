@@ -8,16 +8,29 @@ import FacebookButton from "../lib/components/Buttons/FacebookButton";
 import { signIn, useSession } from "next-auth/react";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import { poppins } from "../lib/utils/font";
+import { useForm, SubmitHandler } from "react-hook-form";
 import Loader from "../lib/components/Loader";
+
+type Inputs = {
+  email: string;
+  password: string;
+};
 
 const Form = () => {
   const params = useSearchParams()!;
   const session = useSession();
   const router = useRouter();
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const [error, setError] = useState<string | null>("");
@@ -36,22 +49,7 @@ const Form = () => {
     router?.push("/my/dashboard");
   }
 
-  const handleChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setForm((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const formSubmit: SubmitHandler<Inputs> = (form) => {
     const { email, password } = form;
     signIn("credentials", {
       email,
@@ -61,55 +59,62 @@ const Form = () => {
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(formSubmit)}
       className={`${styles.form_container} flex justify-center items-center flex-col`}
     >
       <h2
-        className={`leading-[1.15] mt-12 mx-auto w-full  pl-2 sm:pl-0 text-xl my-6 sm:text-2xl font-semibold font-sans ${poppins.variable}`}
+        className={`leading-[1.15] mt-12 mx-auto w-full  px-2 text-xl my-6 sm:text-2xl font-semibold font-sans ${poppins.variable}`}
       >
         Log In
       </h2>
 
-      <fieldset className="w-full mx-4 flex justify-center items-center flex-col">
+      <fieldset className="w-full px-2 flex justify-center items-center flex-col">
         <label
-          className="w-full pl-2 sm:pl-0 "
+          className="w-full "
           htmlFor="email"
         >
           Email
         </label>
         <input
-          name="email"
-          id="email"
           type="email"
-          required
-          onChange={handleChange}
-          value={form.email}
-          className=" w-[95%]  sm:pl-0 mx-4 sm:mx-0 border-solid border-[1px] border-[#EAECEF]"
+          {...register("email", {
+            required: "Email is required",
+            pattern: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+          })}
+          className=" w-full   border-solid border-[1px] border-[#EAECEF]"
         />
+        {errors.email?.message && (
+          <small className="block text-red-600 w-full">
+            {errors.email.message}
+          </small>
+        )}
       </fieldset>
-      <fieldset className="w-full mx-4 mt-12 flex justify-center items-center flex-col">
+      <fieldset className="w-full px-2 mt-12 flex justify-center items-center flex-col">
         <label
-          className="w-full pl-2 sm:pl-0 "
+          className="w-full"
           htmlFor="password"
         >
           Password
         </label>
         <input
-          name="password"
-          id="password"
           type="password"
-          onChange={handleChange}
-          value={form.password}
-          required
-          className=" w-[95%]  sm:pl-0 mx-4 sm:mx-0 border-solid border-[1px] border-[#EAECEF]"
+          {...register("password", {
+            required: "Password is required",
+          })}
+          className=" w-full   border-solid border-[1px] border-[#EAECEF]"
         />
+        {errors.password?.message && (
+          <small className="block text-red-600 w-full">
+            {errors.password.message}
+          </small>
+        )}
       </fieldset>
-      <div className={`flex flex-col justify-center w-full items-center mx-4`}>
+      <div className={`flex flex-col justify-center w-full items-center px-2`}>
         <button
           type="submit"
           className="w-full flex justify-center items-center"
         >
-          <span className="text-center flex-1   mt-6 bg-[#2c6e49] hover:bg-lightColor hover:font-semibold rounded-md p-[1rem] px-4 mx-2  text-white cursor-pointer">
+          <span className="text-center flex-1   mt-6 bg-[#2c6e49] hover:bg-lightColor hover:font-semibold rounded-md p-[1rem] px-4  text-white cursor-pointer">
             Log in
           </span>
         </button>
@@ -127,9 +132,7 @@ const Form = () => {
       </div>
 
       {error && (
-        <p className="text-red-700 w-full text-left uppercase tracking-wider text-sm font-semibold my-2 ">
-          {error}
-        </p>
+        <small className="block w-full px-2 text-red-600">{error}</small>
       )}
 
       <div className="py-4 px-2 w-full">
