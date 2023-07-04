@@ -4,32 +4,32 @@ import styles from "./Form.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  email: string;
+  name: string;
+  password: string;
+};
 
 const Form = () => {
   const router = useRouter();
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-    name: "",
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>({
+    defaultValues: {
+      email: "",
+      name: "",
+      password: "",
+    },
   });
+
   const [message, setMessage] = useState<null | string>(null);
 
-  const handleChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setForm((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const formSubmit: SubmitHandler<Inputs> = async (form) => {
     const { name, email, password } = form;
 
     try {
@@ -53,7 +53,7 @@ const Form = () => {
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(formSubmit)}
       autoComplete="off"
       className={`${styles.form_container} mt-10 flex justify-center items-center flex-col`}
     >
@@ -66,15 +66,16 @@ const Form = () => {
             Full Name
           </label>
           <input
-            name="name"
-            id="name"
+            {...register("name", {
+              required: "Name is required",
+            })}
             type="text"
-            required
-            onChange={handleChange}
             autoComplete="false"
-            value={form.name}
             className="p-3 w-full border-solid border-[1px] border-[#EAECEF]"
           />
+          {errors.name?.message && (
+            <small className="block text-red-600">{errors.name.message}</small>
+          )}
         </div>
         <div className="w-full px-2">
           <label
@@ -84,15 +85,17 @@ const Form = () => {
             Email
           </label>
           <input
-            name="email"
-            id="email"
+            {...register("email", {
+              required: "Email is required",
+              pattern: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+            })}
             type="email"
-            required
-            onChange={handleChange}
             autoComplete="off"
-            value={form.email}
             className="p-3 w-full border-solid border-[1px] border-[#EAECEF]"
           />
+          {errors.email?.message && (
+            <small className="block text-red-600">{errors.email.message}</small>
+          )}
         </div>
 
         <div className="w-full px-2">
@@ -104,14 +107,19 @@ const Form = () => {
           </label>
           <input
             type="password"
-            name="password"
-            required
+            {...register("password", {
+              required: "Password is required",
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/,
+            })}
             autoComplete="new-password"
-            id="password"
-            onChange={handleChange}
-            value={form.password}
             className="p-3 w-full border-solid border-[1px] border-[#EAECEF]"
           />
+          {errors.password?.message && (
+            <small className="block text-red-600">
+              {errors.password.message}
+            </small>
+          )}
         </div>
       </fieldset>
       <div className="flex flex-col w-full items-center px-2">
@@ -124,7 +132,7 @@ const Form = () => {
             Login with an existing account
           </Link>
         </p>
-        {message && <p className="text-red-700 my-2 text-xl">{message}</p>}
+        {message && <small className="block text-red-600">{message}</small>}
         <button
           type="submit"
           className="text-center my-12 flex-1 w-full bg-[#2c6e49] hover:bg-lightColor hover:font-semibold rounded-md p-[1rem] px-4 mx-2  text-white cursor-pointer"
