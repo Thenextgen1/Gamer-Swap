@@ -5,10 +5,10 @@ import FacebookProvider from "next-auth/providers/facebook";
 import User from "../models/User";
 import dbConnect from "./dbConnect";
 import bcrypt from "bcryptjs";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./clientpromise";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   session: {
     strategy: "jwt",
