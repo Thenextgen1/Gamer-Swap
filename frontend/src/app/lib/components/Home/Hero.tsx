@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookSquare } from "react-icons/fa";
 import Image from "next/image";
 import styles from "@/app/styles/Home.module.css";
+import heroImg from "/public/images/hero.webp";
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -64,10 +65,8 @@ const Hero = () => {
       </div>
       <div className="flex-1 w-full hidden lg:block  lg:my-0 my-12 lg:ml-12">
         <Image
-          src="/images/hero.webp"
+          src={heroImg}
           alt="hero"
-          width={500}
-          height={500}
           className="rounded-lg object-contain w-full h-full"
         />
       </div>

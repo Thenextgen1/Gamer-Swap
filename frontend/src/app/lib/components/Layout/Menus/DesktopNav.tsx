@@ -1,35 +1,37 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { BiSolidMoon } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 import styles from "@/app/styles/DesktopNav.module.css";
 import Link from "next/link";
 
 const DesktopNav = () => {
   const { data: session } = useSession();
+  const pathname = usePathname();
 
   const navLink = [
     {
       id: "1",
-      base: "/buy-games",
+      href: "/buy-games",
       name: "Buy Games",
     },
     {
       id: "2",
-      base: "/trade-items",
+      href: "/trade-items",
       name: "Trade Items",
     },
     {
       id: "3",
-      base: "/marketplace",
+      href: "/marketplace",
       name: "Marketplace",
     },
     {
       id: "4",
-      base: "/exchange-zone",
+      href: "/exchange-zone",
       name: "Exchange Zone",
     },
   ];
@@ -43,11 +45,20 @@ const DesktopNav = () => {
           <Link href="/">GAMER SWAP</Link>
         </h1>
         <ul>
-          {navLink.map((details) => (
-            <li key={details.id}>
-              <Link href={details.base}>{details.name}</Link>
-            </li>
-          ))}
+          {navLink.map((details) => {
+            const isActive = pathname.startsWith(details.href);
+
+            return (
+              <li key={details.href}>
+                <Link
+                  className={isActive ? "text-lightColor " : "text-black"}
+                  href={details.href}
+                >
+                  {details.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div>
