@@ -13,7 +13,7 @@ module.exports = {
         lightColor: "#81c29e"
       },
       fontFamily: {
-        sans: ['var(--font-poppins)'],
+        Poppins: ['Poppins, sans-serif']
       }
     },
   },

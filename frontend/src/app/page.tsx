@@ -1,4 +1,3 @@
-import { Poppins } from "next/font/google";
 import { Button } from "./lib/utils/Button";
 import trade from "@/app/lib/data/home/trade.json";
 
@@ -7,7 +6,6 @@ import styles from "@/app/styles/Home.module.css";
 import { Metadata } from "next";
 import Works from "./lib/components/Home/Works";
 import Hero from "./lib/components/Home/Hero";
-import { poppins } from "./lib/utils/font";
 
 export const metadata: Metadata = {
   title: "Gamer Swap",
@@ -18,7 +16,7 @@ export default function Home() {
     <main className="">
       <section>
         <p
-          className={`text-center py-3 px-2 bg-[#2c6e493d] ${poppins.variable} font-sans text-sm tracking-wide opacity-80`}
+          className={`text-center py-3 px-2 bg-[#2c6e493d]  font-Poppins text-sm tracking-wide opacity-80`}
         >
           <span className="mr-4">
             Register now - Get up to $100 worth of inplay credits (for
@@ -37,7 +35,7 @@ export default function Home() {
           <ul className="grid grid-cols-2 lg:grid-cols-4 ">
             {trade.map((details) => (
               <li
-                className="${poppins.variable} text-center m-4 font-sans text-[1.5em] sm:text-[2.1em] flex-wrap font-semibold"
+                className="font-Poppins text-center m-4  text-[1.5em] sm:text-[2.1em] flex-wrap font-semibold"
                 key={details.id}
               >
                 {details.amount}

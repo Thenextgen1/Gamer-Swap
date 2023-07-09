@@ -7,7 +7,6 @@ import GoogleButton from "../lib/components/Buttons/GoogleButton";
 import FacebookButton from "../lib/components/Buttons/FacebookButton";
 import { signIn, useSession } from "next-auth/react";
 import { BsArrowRightCircleFill } from "react-icons/bs";
-import { poppins } from "../lib/utils/font";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Loader from "../lib/components/Loader";
 
@@ -63,7 +62,7 @@ const Form = () => {
       className={`${styles.form_container} flex justify-center items-center flex-col`}
     >
       <h2
-        className={`leading-[1.15] mt-12 mx-auto w-full  px-2 text-xl my-6 sm:text-2xl font-semibold font-sans ${poppins.variable}`}
+        className={`leading-[1.15] mt-12 mx-auto w-full  px-2 text-xl my-6 sm:text-2xl font-semibold  font-Poppins`}
       >
         Log In
       </h2>

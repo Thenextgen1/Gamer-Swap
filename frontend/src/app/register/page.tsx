@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
 import Form from "./Form";
-import { poppins } from "../lib/utils/font";
 
 export const metadata: Metadata = {
   title: "Gamer Swap | Register",
@@ -12,7 +11,7 @@ const Register = () => {
     <main className="mt-28">
       <section className="mx-auto max-w-sm">
         <h2
-          className={`leading-[1.15] text-xl sm:text-2xl font-semibold font-sans px-2 ${poppins.variable}`}
+          className={`leading-[1.15] text-xl sm:text-2xl font-semibold  px-2 font-Poppins`}
         >
           Create Personal Account
         </h2>
