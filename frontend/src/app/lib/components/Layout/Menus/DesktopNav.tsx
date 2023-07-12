@@ -38,20 +38,22 @@ const DesktopNav = () => {
 
   return (
     <nav
-      className={`hidden xl:flex xl:justify-between xl:items-center px-8 py-4 ${styles.desktop_container}`}
+      className={`hidden xl:flex z-[100] relative xl:justify-between xl:items-center px-8 py-4 ${styles.desktop_container}`}
     >
       <div className="flex items-center">
         <h1 className="uppercase text-3xl font-bold tracking-wider text-[#2c6e49]">
           <Link href="/">GAMER SWAP</Link>
         </h1>
-        <ul>
+        <ul className="cursor-pointer">
           {navLink.map((details) => {
             const isActive = pathname.startsWith(details.href);
 
             return (
               <li key={details.href}>
                 <Link
-                  className={isActive ? "text-lightColor " : "text-black"}
+                  className={
+                    isActive ? "text-lightColor font-semibold" : "text-black"
+                  }
                   href={details.href}
                 >
                   {details.name}
