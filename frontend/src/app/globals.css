@@ -18,5 +18,5 @@ body {
 }
 
 svg {
-  @apply inline mx-1;
+  @apply inline mr-1;
 }
