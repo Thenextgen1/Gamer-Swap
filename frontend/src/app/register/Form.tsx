@@ -8,7 +8,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
   email: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   password: string;
 };
 
@@ -22,7 +23,8 @@ const Form = () => {
   } = useForm<Inputs>({
     defaultValues: {
       email: "",
-      name: "",
+      firstName: "",
+      lastName: "",
       password: "",
     },
   });
@@ -30,7 +32,8 @@ const Form = () => {
   const [message, setMessage] = useState<null | string>(null);
 
   const formSubmit: SubmitHandler<Inputs> = async (form) => {
-    const { name, email, password } = form;
+    const { firstName, email, password, lastName } = form;
+    const fullName = firstName + " " + lastName;
 
     try {
       const res = await fetch("/api/auth/register", {
@@ -39,7 +42,9 @@ const Form = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name,
+          firstName,
+          lastName,
+          fullName,
           email,
           password,
         }),
@@ -60,21 +65,44 @@ const Form = () => {
       <fieldset className="w-full mx-4 flex justify-center items-center flex-col">
         <div className="w-full px-2">
           <label
-            htmlFor="name"
+            htmlFor="lastName"
             className="text-sm"
           >
-            Full Name
+            First Name
           </label>
           <input
-            {...register("name", {
-              required: "Name is required",
+            {...register("firstName", {
+              required: "First Name is required",
             })}
             type="text"
             autoComplete="false"
             className="p-3 w-full border-solid border-[1px] border-[#EAECEF]"
           />
-          {errors.name?.message && (
-            <small className="block text-red-600">{errors.name.message}</small>
+          {errors.firstName?.message && (
+            <small className="block text-red-600">
+              {errors.firstName.message}
+            </small>
+          )}
+        </div>
+        <div className="w-full px-2">
+          <label
+            htmlFor="lastName"
+            className="text-sm"
+          >
+            Last Name
+          </label>
+          <input
+            {...register("lastName", {
+              required: "Last Name is required",
+            })}
+            type="text"
+            autoComplete="false"
+            className="p-3 w-full border-solid border-[1px] border-[#EAECEF]"
+          />
+          {errors.lastName?.message && (
+            <small className="block text-red-600">
+              {errors.lastName.message}
+            </small>
           )}
         </div>
         <div className="w-full px-2">

@@ -5,14 +5,17 @@ import dbConnect from "@/app/lib/utils/dbConnect";
 import { NextRequest } from "next/server";
 
 export const POST = async (request: NextRequest) => {
-  const { name, email, password } = await request.json();
+  const { firstName, email, password, lastName, fullName } =
+    await request.json();
 
   await dbConnect();
 
   const hashedPassword = await bcrypt.hash(password, 5);
 
   const newUser = new User({
-    name,
+    firstName,
+    lastName,
+    fullName,
     email,
     password: hashedPassword,
   });
