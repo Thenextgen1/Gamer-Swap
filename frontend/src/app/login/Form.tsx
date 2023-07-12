@@ -8,7 +8,7 @@ import FacebookButton from "../lib/components/Buttons/FacebookButton";
 import { signIn, useSession } from "next-auth/react";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Loader from "../lib/components/Loader";
+import Loader from "../buy-games/loading";
 
 type Inputs = {
   email: string;
