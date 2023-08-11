@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./Form.module.css";
 import Link from "next/link";
-import GoogleButton from "../lib/components/Buttons/GoogleButton";
-import FacebookButton from "../lib/components/Buttons/FacebookButton";
+import GoogleButton from "../../lib/components/Buttons/GoogleButton";
+import FacebookButton from "../../lib/components/Buttons/FacebookButton";
 import { signIn, useSession } from "next-auth/react";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Loader from "../buy-games/loading";
+import Loader from "../../(public)/buy-games/loading";
 
 type Inputs = {
   email: string;
