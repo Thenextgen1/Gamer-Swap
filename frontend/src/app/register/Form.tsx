@@ -60,7 +60,7 @@ const Form = () => {
     <form
       onSubmit={handleSubmit(formSubmit)}
       autoComplete="off"
-      className={`${styles.form_container} mt-10 flex justify-center items-center flex-col`}
+      className={`${styles.form_container} -mt-2 flex justify-center items-center flex-col`}
     >
       <fieldset className="w-full mx-4 flex justify-center items-center flex-col">
         <div className="w-full px-2">

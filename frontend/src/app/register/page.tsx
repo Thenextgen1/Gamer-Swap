@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 
 const Register = () => {
   return (
-    <main className="mt-28">
+    <main className="">
       <section className="mx-auto max-w-sm">
         <h2
-          className={`leading-[1.15] text-xl sm:text-2xl font-semibold  px-2 font-Poppins`}
+          className={`leading-[1.15] mt-12 text-xl sm:text-2xl font-semibold  px-2 font-Poppins`}
         >
           Create Personal Account
         </h2>
